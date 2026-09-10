@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anywhere Tutor — Online tutoring, wherever you are</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0B0E;
+    --bg-alt:#141419;
+    --panel:#17171D;
+    --ink:#F5F5F7;
+    --ink-soft:#9C9DAA;
+    --indigo:#4F46E5;
+    --indigo-light:#8A82F5;
+    --line:rgba(255,255,255,0.10);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+  }
+  h1,h2,h3{
+    font-family:'Poppins',sans-serif;
+    margin:0;
+    line-height:1.18;
+    font-weight:600;
+  }
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+
+  /* NAV */
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:24px 28px;
+    max-width:1080px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:11px;}
+  .brand-badge{
+    width:38px;height:38px;border-radius:9px;background:var(--indigo);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .brand-badge svg{width:21px;height:21px;}
+  .brand-name{font-family:'Poppins',sans-serif;font-weight:600;font-size:1.08rem;}
+  .brand-name .accent{color:var(--indigo-light);}
+  .nav-links{display:flex;gap:34px;align-items:center;}
+  .nav-links a{font-size:0.92rem;color:var(--ink-soft);}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{
+    background:var(--indigo);color:#fff;
+    padding:11px 22px;border-radius:8px;
+    font-size:0.88rem;font-weight:500;
+  }
+  .nav-cta:hover{background:#453DCB;}
+  @media(max-width:760px){ .nav-links a:not(.nav-cta){display:none;} }
+
+  /* HERO */
+  .hero{padding:56px 0 0;}
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;
+  }
+  @media(max-width:820px){ .hero-grid{grid-template-columns:1fr;} }
+  .eyebrow-line{
+    display:flex;align-items:center;gap:10px;margin-bottom:22px;color:var(--indigo-light);
+    font-size:0.86rem;font-weight:600;letter-spacing:0.2px;
+  }
+  .eyebrow-line .dot{width:7px;height:7px;border-radius:50%;background:var(--indigo);}
+  .hero h1{
+    font-size:2.7rem;max-width:540px;letter-spacing:-0.5px;
+  }
+  .hero h1 .accent{color:var(--indigo-light);}
+  .hero-sub{
+    margin-top:22px;font-size:1.08rem;color:var(--ink-soft);max-width:460px;
+  }
+  .hero-actions{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--indigo);color:#fff;padding:15px 28px;border-radius:9px;
+    font-weight:500;font-size:0.95rem;display:inline-block;
+  }
+  .btn-primary:hover{background:#453DCB;}
+  .btn-secondary{
+    border:1px solid var(--line);color:var(--ink);padding:15px 28px;border-radius:9px;
+    font-weight:500;font-size:0.95rem;display:inline-block;
+  }
+  .btn-secondary:hover{border-color:var(--indigo-light);}
+
+  .hero-visual{position:relative;height:360px;}
+  .hero-visual svg{width:100%;height:100%;}
+
+  /* TRUST BAR */
+  .trust-bar{padding:44px 0;margin-top:48px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .trust-row{display:flex;flex-wrap:wrap;gap:36px;justify-content:space-between;}
+  .trust-item{display:flex;align-items:center;gap:10px;font-size:0.92rem;color:var(--ink-soft);flex:1;min-width:220px;}
+  .trust-item svg{flex-shrink:0;width:18px;height:18px;}
+
+  /* HOW IT WORKS */
+  .how{padding:84px 0;}
+  .section-head{max-width:540px;margin-bottom:52px;}
+  .section-head .kicker{color:var(--indigo-light);font-size:0.86rem;font-weight:600;margin-bottom:10px;display:block;}
+  .section-head h2{font-size:2rem;letter-spacing:-0.5px;}
+  .section-head p{margin-top:14px;color:var(--ink-soft);font-size:1.02rem;}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:44px;}
+  @media(max-width:760px){ .steps{grid-template-columns:1fr;} }
+  .step{border-top:2px solid var(--indigo);padding-top:18px;}
+  .step .num{
+    font-family:'Poppins',sans-serif;font-size:1.6rem;font-weight:700;
+    color:var(--indigo-light);display:block;margin-bottom:10px;
+  }
+  .step h3{font-size:1.1rem;margin-bottom:8px;}
+  .step p{color:var(--ink-soft);font-size:0.96rem;}
+
+  /* SUBJECTS */
+  .subjects{padding:84px 0;background:var(--bg-alt);}
+  .subject-row{display:flex;flex-wrap:wrap;gap:12px;}
+  .subject-pill{
+    border:1px solid var(--line);background:var(--panel);
+    padding:11px 19px;border-radius:999px;font-size:0.92rem;font-weight:500;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials{padding:84px 0;}
+  .testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:36px;}
+  @media(max-width:760px){ .testi-grid{grid-template-columns:1fr;} }
+  .testi{
+    border-left:3px solid var(--indigo);padding:6px 0 6px 24px;
+  }
+  .testi p.quote{
+    font-family:'Poppins',sans-serif;font-weight:500;font-style:italic;font-size:1.08rem;color:var(--ink);
+  }
+  .testi p.attr{
+    margin-top:14px;font-size:0.88rem;color:var(--ink-soft);
+  }
+
+  /* WHY */
+  .why{padding:84px 0;background:var(--bg-alt);}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line);}
+  @media(max-width:760px){ .why-grid{grid-template-columns:1fr;} }
+  .why-item{padding:26px 4px;border-bottom:1px solid var(--line);}
+  .why-item:nth-child(odd){padding-right:36px;}
+  .why-item:nth-child(even){padding-left:36px;border-left:1px solid var(--line);}
+  @media(max-width:760px){ .why-item:nth-child(even){border-left:none;padding-left:4px;} }
+  .why-item h3{font-size:1.05rem;margin-bottom:6px;font-weight:600;}
+  .why-item p{color:var(--ink-soft);font-size:0.94rem;}
+
+  /* BOOKING */
+  .booking{padding:84px 0 100px;}
+  .booking-panel{
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel);
+  }
+  .booking-head{
+    padding:26px 30px;border-bottom:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+  }
+  .booking-head h3{font-size:1.15rem;}
+  .booking-head span{font-size:0.88rem;color:var(--ink-soft);}
+  .booking-frame-wrap{
+    position:relative;background:#fff;min-height:640px;
+  }
+  .booking-loading{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    flex-direction:column;gap:12px;color:#8A8A93;font-size:0.9rem;background:#fff;
+  }
+  .booking-loading .spinner{
+    width:22px;height:22px;border-radius:50%;
+    border:2.5px solid #E4E3E8;border-top-color:var(--indigo);
+    animation:spin 0.8s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .booking-frame{
+    width:100%;height:640px;border:0;display:block;background:#fff;position:relative;z-index:1;
+  }
+  .booking-note{
+    margin-top:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    font-size:0.85rem;color:var(--ink-soft);
+  }
+  .booking-note .open-tab{
+    color:var(--indigo-light);font-weight:500;
+  }
+  @media(max-width:600px){
+    .booking-frame, .booking-frame-wrap{height:560px;min-height:560px;}
+  }
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:36px 0;background:#000;}
+  .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+  .footer-row p{font-size:0.85rem;color:var(--ink-soft);}
+  .footer-links{display:flex;gap:20px;}
+  .footer-links a{font-size:0.85rem;color:var(--ink-soft);}
+  .footer-links a:hover{color:var(--ink);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">
+    <div class="brand-badge">
+      <svg viewBox="0 0 200 200" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M55 133 C72 123 92 123 104 133 C116 123 136 123 153 133" />
+        <path d="M104 133 L104 75" />
+        <path d="M67 75 C67 51 84 37 104 37 C124 37 141 51 141 75 C141 94 117 111 104 121 C91 111 67 94 67 75 Z" />
+      </svg>
+    </div>
+    <div class="brand-name">Anywhere<span class="accent">Tutor</span></div>
+  </div>
+  <div class="nav-links">
+    <a href="#how">How it works</a>
+    <a href="#subjects">Subjects</a>
+    <a href="#testimonials">Parents say</a>
+    <a href="#booking" class="nav-cta">Book a session</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow-line"><span class="dot"></span>Trusted by families since day one</div>
+      <h1>A tutor your child will <span class="accent">actually</span> look forward to.</h1>
+      <p class="hero-sub">Certified, background-checked tutors — one-on-one, online, matched to how your child learns best. You'll see the progress after every single session.</p>
+      <div class="hero-actions">
+        <a href="#booking" class="btn-primary">Book a free session</a>
+        <a href="#how" class="btn-secondary">How it works</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg viewBox="0 0 420 340" fill="none">
+        <path d="M40 280 C 120 180, 180 320, 260 200 S 380 60, 380 60" stroke="#2A2A35" stroke-width="1.5" stroke-dasharray="1 9" stroke-linecap="round"/>
+        <circle cx="40" cy="280" r="5" fill="#8A82F5"/>
+        <circle cx="260" cy="200" r="4" fill="#F5F5F7"/>
+        <circle cx="380" cy="60" r="5" fill="#8A82F5"/>
+        <circle cx="150" cy="120" r="3.5" fill="#3A3A46"/>
+        <circle cx="320" cy="260" r="3.5" fill="#3A3A46"/>
+        <g transform="translate(230,150)">
+          <path d="M60 0 C60 -24 43 -38 27 -38 C11 -38 -6 -24 -6 0 C-6 16 14 30 27 38 C40 30 60 16 60 0 Z"
+                fill="#17171D" stroke="#4F46E5" stroke-width="3.5"/>
+          <path d="M6 -6 C16 -12 38 -12 48 -6" stroke="#8A82F5" stroke-width="3" stroke-linecap="round"/>
+          <path d="M27 -6 L27 20" stroke="#8A82F5" stroke-width="3" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="trust-bar">
+    <div class="wrap trust-row">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8A82F5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        Every tutor background-checked & certified
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8A82F5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        Progress note sent after every session
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8A82F5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        Not a fit? First session is on us
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">How it works</span>
+      <h2>Three steps, no back-and-forth</h2>
+      <p>Everything happens right on this page — booking, meeting, and tracking progress.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="num">1</span>
+        <h3>Pick a time</h3>
+        <p>Choose an open slot on the calendar below — evenings and weekends included.</p>
+      </div>
+      <div class="step">
+        <span class="num">2</span>
+        <h3>Meet online</h3>
+        <p>A confirmation email arrives with a video link. Your child just clicks and joins.</p>
+      </div>
+      <div class="step">
+        <span class="num">3</span>
+        <h3>See the progress</h3>
+        <p>A short, honest recap lands in your inbox after every session — no guessing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="subjects" id="subjects">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Subjects</span>
+      <h2>What we tutor</h2>
+      <p>If it's not listed, ask us — most requests fit somewhere in here.</p>
+    </div>
+    <div class="subject-row">
+      <span class="subject-pill">Math</span>
+      <span class="subject-pill">Science</span>
+      <span class="subject-pill">English & Writing</span>
+      <span class="subject-pill">Test Prep</span>
+      <span class="subject-pill">Coding</span>
+      <span class="subject-pill">Languages</span>
+      <span class="subject-pill">Study Skills</span>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="testimonials">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Parents say</span>
+      <h2>Families who've been where you are</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi">
+        <p class="quote">Our son actually asks when his next session is. That alone told us we'd found the right fit.</p>
+        <p class="attr">— Parent of a 6th grader, Math</p>
+      </div>
+      <div class="testi">
+        <p class="quote">The recap after every class meant I never had to ask "how was tutoring today?" — I already knew.</p>
+        <p class="attr">— Parent of a 9th grader, English</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Why families choose us</span>
+      <h2>Built around trust, not just tutoring</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <h3>Vetted, credentialed tutors</h3>
+        <p>Every tutor is background-checked and reviewed before they meet a single student.</p>
+      </div>
+      <div class="why-item">
+        <h3>The same tutor, every time</h3>
+        <p>Consistency matters — your child works with one tutor, not a rotating cast.</p>
+      </div>
+      <div class="why-item">
+        <h3>Flexible, cancel anytime</h3>
+        <p>Reschedule or pause directly from the calendar. No contracts, no phone calls.</p>
+      </div>
+      <div class="why-item">
+        <h3>Honest progress reports</h3>
+        <p>You'll always know exactly where your child stands — no surprises at report card time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="booking">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Get started</span>
+      <h2>Book your child's first session</h2>
+      <p>Pick an open slot below — it's free, and it syncs straight to our calendar.</p>
+    </div>
+    <div class="booking-panel">
+      <div class="booking-head">
+        <h3>Available times</h3>
+        <span>Times shown in your local time zone</span>
+      </div>
+      <!--
+        Replace the src below with your Google Calendar "Appointment schedule" booking link.
+        In Google Calendar: Create > Appointment schedule > set your availability > Share > copy the booking page link.
+      -->
+      <div class="booking-frame-wrap">
+        <div class="booking-loading" id="bookingLoading">
+          <div class="spinner"></div>
+          <span>Loading available times…</span>
+        </div>
+        <iframe
+          class="booking-frame"
+          src="https://calendar.app.google/CNNyNQAjgDyHapP97"
+          title="Book a tutoring session"
+          onload="document.getElementById('bookingLoading').style.display='none';">
+        </iframe>
+      </div>
+    </div>
+    <p class="booking-note">
+      <span>Calendar not loading? It can take a moment, or your browser may be blocking embedded content.</span>
+      <a class="open-tab" href="https://calendar.app.google/CNNyNQAjgDyHapP97" target="_blank" rel="noopener">Open booking page in a new tab</a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <p>&copy; 2026 Anywhere Tutor. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="mailto:hello@anywheretutor.com">hello@anywheretutor.com</a>
+      <a href="#booking">Book a session</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
